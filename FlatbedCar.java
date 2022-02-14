@@ -12,8 +12,8 @@ public abstract class FlatbedCar extends Car {
      * @param anglelimit the maximum angle of the the cars flatbed measured in degrees
      * @param incDecSpeed the angle changing speed measured in degrees
      */
-    public FlatbedCar(int nrDoors, double enginePower, Color color, String modelName, double size, double anglelimit, double incDecSpeed) {
-        super(nrDoors, enginePower, color, modelName, size);
+    public FlatbedCar(int nrDoors, double enginePower, Color color, String modelName, double size, double anglelimit, double incDecSpeed, String texture) {
+        super(nrDoors, enginePower, color, modelName, size, texture);
         flatbed = new Flatbed(anglelimit, incDecSpeed, this);
     }
     public void startEngine() {

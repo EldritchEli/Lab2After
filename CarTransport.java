@@ -6,8 +6,8 @@ public abstract class CarTransport extends Car {
     private double acceptableCarRange = 2;
     protected Ramp ramp;
 
-    public CarTransport(int nrDoors, double enginePower, Color color, String modelName, double size, double rampSizeLimit) {
-        super(nrDoors, enginePower, color, modelName, size);
+    public CarTransport(int nrDoors, double enginePower, Color color, String modelName, double size, double rampSizeLimit, String texture) {
+        super(nrDoors, enginePower, color, modelName, size, texture);
         ramp = new Ramp(rampSizeLimit, this);
 
     }

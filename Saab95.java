@@ -22,7 +22,7 @@ public class Saab95 extends Car {
      * turboOn is set to false by default.
      */
     public Saab95(){
-        super(2,125,Color.red,"Saab95", 2);
+        super(2,125,Color.red,"Saab95", 2, "pics/Saab95.jpg");
 	    turboOn = false;
         //stopEngine();
     }

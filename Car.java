@@ -60,6 +60,8 @@ public abstract class Car implements Movable, Positionable{
 
     private double size;
 
+    private String texture;
+
     /**
      * Super constructor for Car object.
      * @param nrDoors the number of doors the car will have.
@@ -67,7 +69,7 @@ public abstract class Car implements Movable, Positionable{
      * @param color the color of the car.
      * @param modelName the name of the car model.
      */
-    public Car(int nrDoors, double enginePower, Color color, String modelName,double size) {
+    public Car(int nrDoors, double enginePower, Color color, String modelName,double size, String texture) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = currentSpeed;
@@ -77,6 +79,7 @@ public abstract class Car implements Movable, Positionable{
         this.size = size;
         this.x = 0;
         this.y = 0;
+        this.texture = texture;
         stopEngine();
     }
 
@@ -247,5 +250,9 @@ public abstract class Car implements Movable, Positionable{
         {throw new RuntimeException("input needs to be in interval [0, 1]");}
 
         else decrementSpeed(n);
+    }
+
+    public String getTexture() {
+        return texture;
     }
 }

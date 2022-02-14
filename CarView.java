@@ -18,11 +18,15 @@ public class CarView extends JFrame{
     private static final int Y = 800;
 
     // The controller member
-    CarController carC;
+    CarController cc;
 
-    DrawPanel drawPanel = new DrawPanel(X, Y-240);
+    DrawPanel drawPanel;
 
     JPanel controlPanel = new JPanel();
+
+
+
+
 
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
@@ -40,8 +44,9 @@ public class CarView extends JFrame{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public CarView(String framename, CarController cc){
-        this.carC = cc;
+    public CarView(String framename, CarGroup carGroup){
+        this.cc = cc;
+        this.drawPanel = new DrawPanel(X, Y-240, carGroup);
         initComponents(framename);
     }
 
@@ -112,43 +117,43 @@ public class CarView extends JFrame{
         turboOnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.turboOn();
+                drawPanel.getCarGroup().turboOn();
             }
         });
         // START BUTTON
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.startEngine();
+                drawPanel.getCarGroup().startEngine();
             }
         });
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.gas(gasAmount);
+                drawPanel.getCarGroup().gas(gasAmount);
             }
         });
 
         brakeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.brake(20);
+                drawPanel.getCarGroup().brake(20);
             }
         });
 
         lowerBedButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {carC.lowerBed();}});
+            public void actionPerformed(ActionEvent e) { drawPanel.getCarGroup().lowerBed();}});
 
 
         liftBedButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {carC.liftBed();}});
+            public void actionPerformed(ActionEvent e) { drawPanel.getCarGroup().liftBed();}});
 
         stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.stopEngine();}});
+                drawPanel.getCarGroup().stopEngine();}});
 
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();

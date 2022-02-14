@@ -21,19 +21,29 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
-    ArrayList<Car> cars = new ArrayList<>();
+    private CarGroup carGroup;
+
+    public CarController(String name, CarGroup carGroup){
+        this.drawPanel = new DrawPanel(800, 800 -240, carGroup);
+        this.carGroup = carGroup;
+        frame = new CarView(name, this.carGroup);
+
+
+    }
+
+    public void addToCarGroup(Car car) {
+        carGroup.add(car);
+    }
+    public CarGroup getCarGroup() {
+        return carGroup;
+    }
+
 
     //methods:
 
     public static void main(String[] args) {
         // Instance of this class
-        CarController cc = new CarController();
-
-        cc.cars.add(new Volvo240());
-        cc.cars.add(new Saab95());
-        cc.cars.add(new Scania());
-
-
+        CarController cc = new CarController("CarSim 1.0", new CarGroup());
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -47,11 +57,8 @@ public class CarController {
     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Car car : cars) {
+            for (Car car : frame.drawPanel.getCarGroup().getCars()) {
                 car.move();
-                int x = (int) Math.round(car.getX());
-                int y = (int) Math.round(car.getY());
-                frame.drawPanel.moveit(x, y, car);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
                 if (car.getX() > 700) {
@@ -65,62 +72,6 @@ public class CarController {
                     car.startEngine();
                 }
             }
-        }
-    }
-
-    void brake(int amount) {
-        double brake = ((double) amount) / 100;
-        for (Car car : cars
-        ) {
-            car.brake(brake);
-        }
-    }
-
-
-    // Calls the gas method for each car once
-    void gas(int amount) {
-        double gas = ((double) amount) / 100;
-        for (Car car : cars
-                ) {
-            car.gas(gas);
-        }
-    }
-    void startEngine(){
-        for (Car car : cars
-        ) {
-            car.startEngine();
-        }
-    }
-
-    void turboOn() {
-       for (Car car : cars
-       ) {
-           if (car instanceof Saab95) ((Saab95) car).setTurboOn();
-       }
-    }
-
-    void turboOff() {
-        for (Car car : cars
-        ) {
-            if (car instanceof Saab95) ((Saab95) car).setTurboOff();
-        }
-    }
-
-    void liftBed() {
-        for (Car car : cars) {
-            if (car instanceof FlatbedCar) {
-                ((FlatbedCar) car).incrementFlatbed();}}}
-
-    void lowerBed() {
-        for (Car car : cars) {
-            if(car instanceof FlatbedCar) {
-                ((FlatbedCar) car).decrementFlatbed();
-            }}}
-
-    void stopEngine() {
-        for (Car car : cars
-        ) {
-            car.stopEngine();
         }
     }
 }
