@@ -18,13 +18,7 @@ public class DrawPanel extends JPanel{
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.magenta);
         // Print an error message in case file is not found with a try/catch block
-        Car saab95 = new Saab95();
-        saab95.setY(100);
-        Car scania = new Scania();
-        scania.setY(200);
-        carGroup.add(new Volvo240());
-        carGroup.add(saab95);
-        carGroup.add(scania);
+
         this.carGroup = carGroup;
     }
 

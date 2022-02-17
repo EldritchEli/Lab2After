@@ -33,7 +33,7 @@ public class Saab95 extends Car {
      */
     public void setTurboOn(){
 	    turboOn = true;
-        turbo = 9000;
+        turbo = 5;
     }
     /***
      * Sets turboOn to false
